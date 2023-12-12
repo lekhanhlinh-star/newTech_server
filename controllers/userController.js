@@ -56,12 +56,14 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.createUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This route is not defined! Please use /signup instead'
+exports.createUser = catchAsync(async (req, res, next) => {
+  const user=await User.create(req.body);
+
+  res.status(201).json({
+    status: 'success',
+    data: user
   });
-};
+});
 
 exports.getUser = factory.getOne(User);
 exports.getAllUsers = factory.getAll(User);

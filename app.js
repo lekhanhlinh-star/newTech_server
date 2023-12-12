@@ -13,6 +13,7 @@ const projectRouter = require('./routes/projectRoutes');
 const userRouter = require('./routes/userRoutes');
 const majorRouter = require('./routes/majorRoutes');
 const taskRouter = require('./routes/taskRoutes');
+const classRouter=require('./routes/classRoutes')
 const app = express();
 
 // Serving static files
@@ -54,6 +55,7 @@ app.use('/api/v1/projects', projectRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/majors', majorRouter);
 app.use('/api/v1/tasks', taskRouter);
+app.use('/api/v1/classes',classRouter)
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

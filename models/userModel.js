@@ -11,6 +11,9 @@ const userSchema = new Schema({
     },
     major: {type: Schema.Types.ObjectId, ref: 'Major'},
     project: {type: Schema.Types.ObjectId, ref: 'Project'},
+    class:{
+        type: Schema.Types.ObjectId, ref: 'Class'
+    },
     firstName: {
         type: String, required: [true, 'Please tell us your first name'], trim: true
     },
@@ -20,6 +23,7 @@ const userSchema = new Schema({
     role: {
         type: String, enum: ['guest',"student" , 'lecturer', 'admin', 'HoD'], default: 'guest'
     },
+
     email: {
         type: String,
         required: [true, 'Please provide your emal'],
