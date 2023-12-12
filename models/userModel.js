@@ -12,7 +12,7 @@ const userSchema = new Schema({
     major: {type: Schema.Types.ObjectId, ref: 'Major'},
     project: {type: Schema.Types.ObjectId, ref: 'Project'},
     class:{
-        type: Schema.Types.ObjectId, ref: 'Class'
+        type: Schema.Types.ObjectId, ref: 'Classes'
     },
     firstName: {
         type: String, required: [true, 'Please tell us your first name'], trim: true

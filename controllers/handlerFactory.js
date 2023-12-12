@@ -69,6 +69,9 @@ exports.getAll = (Model, popOptions) =>
   catchAsync(async (req, res, next) => {
     let filter = {};
     if (req.params.projectId) filter = { project: req.params.projectId };
+    if (req.params.role) filter = { role: req.params.role };
+
+
 
     const features = new APIFeatures(Model.find(filter), req.query)
       .filter()
@@ -76,18 +79,17 @@ exports.getAll = (Model, popOptions) =>
       .limitFields()
       .paginate();
 
-    let doc;
+    let data;
     if (popOptions) {
-      doc = await features.query.populate(popOptions);
+      data = await features.query.populate(popOptions);
     } else {
-      doc = await features.query;
+      data = await features.query;
     }
 
     res.status(200).json({
       status: 'success',
-      results: doc.length,
-      data: {
-        data: doc
-      }
+      results: data.length,
+      data
+
     });
   });
